@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Management System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        display: grid;
+        grid-gap: 10px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"], input[type="date"], input[type="time"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    #eventDetails {
+        display: none;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+    #removeEventDetails {
+        display: none;
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Add New Event</h2>
+    <form id="eventForm">
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" name="eventName" required>
+        <label for="eventDate">Date:</label>
+        <input type="date" id="eventDate" name="eventDate" required>
+        <label for="eventTime">Time:</label>
+        <input type="time" id="eventTime" name="eventTime" required>
+        <label for="eventLocation">Location:</label>
+        <input type="text" id="eventLocation" name="eventLocation" required>
+        <input type="submit" value="Add Event">
+    </form>
+    <div id="eventDetails">
+        <h2>Event Details</h2>
+        <p><strong>Name:</strong> <span id="eventNameDisplay"></span></p>
+        <p><strong>Date:</strong> <span id="eventDateDisplay"></span></p>
+        <p><strong>Time:</strong> <span id="eventTimeDisplay"></span></p>
+        <p><strong>Location:</strong> <span id="eventLocationDisplay"></span></p>
+        <button id="removeEventDetails">Remove Event Details</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("eventForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        // Get form values
+        var eventName = document.getElementById("eventName").value;
+        var eventDate = document.getElementById("eventDate").value;
+        var eventTime = document.getElementById("eventTime").value;
+        var eventLocation = document.getElementById("eventLocation").value;
+        
+        // Display event details
+        document.getElementById("eventNameDisplay").textContent = eventName;
+        document.getElementById("eventDateDisplay").textContent = eventDate;
+        document.getElementById("eventTimeDisplay").textContent = eventTime;
+        document.getElementById("eventLocationDisplay").textContent = eventLocation;
+        
+        // Show event details div and remove button
+        document.getElementById("eventDetails").style.display = "block";
+        document.getElementById("removeEventDetails").style.display = "block";
+    });
+
+    document.getElementById("removeEventDetails").addEventListener("click", function() {
+        // Hide event details and remove button
+        document.getElementById("eventDetails").style.display = "none";
+        document.getElementById("removeEventDetails").style.display = "none";
+    });
+</script>
+</body>
+</html>
